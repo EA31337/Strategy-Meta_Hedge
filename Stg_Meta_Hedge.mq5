@@ -1,6 +1,6 @@
 /**
  * @file
- * Implements Resistance meta strategy.
+ * Implements Hedge meta strategy.
  */
 
 // Includes conditional compilation directives.
@@ -32,13 +32,13 @@ input ENUM_LOG_LEVEL Log_Level = V_INFO;  // Log level.
 input bool Info_On_Chart = true;          // Display info on chart.
 
 // Includes strategy class.
-#include "Stg_Meta_Resistance.mqh"
+#include "Stg_Meta_Hedge.mqh"
 
 // Defines.
-#define ea_name "Strategy Meta Resistance"
+#define ea_name "Strategy Meta Hedge"
 #define ea_version "2.000"
-#define ea_desc "Resistance meta strategy to filter out signals of other strategies based on the current trend."
-#define ea_link "https://github.com/EA31337/Strategy-Meta_Resistance"
+#define ea_desc "Hedge meta strategy to manage another signal's strategy focusing on balancing of the trades."
+#define ea_link "https://github.com/EA31337/Strategy-Meta_Hedge"
 #define ea_author "EA31337 Ltd"
 
 // Properties.
@@ -64,7 +64,7 @@ int OnInit() {
   bool _result = true;
   EAParams ea_params(__FILE__, Log_Level);
   ea = new EA(ea_params);
-  _result &= ea.StrategyAdd<Stg_Meta_Resistance>(Active_Tfs);
+  _result &= ea.StrategyAdd<Stg_Meta_Hedge>(Active_Tfs);
   return (_result ? INIT_SUCCEEDED : INIT_FAILED);
 }
 
