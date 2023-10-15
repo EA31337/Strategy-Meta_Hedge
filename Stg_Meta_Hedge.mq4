@@ -6,7 +6,7 @@
 
 /**
  * @file
- * Implements Resistance meta strategy.
+ * Implements Hedge meta strategy.
  */
 
 // Includes the main code.
