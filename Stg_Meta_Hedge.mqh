@@ -12,7 +12,7 @@ INPUT2_GROUP("Meta Hedge strategy: main params");
 INPUT2 ENUM_STRATEGY Meta_Hedge_Strategy = STRAT_OSCILLATOR_CROSS;  // Strategy
 INPUT2_GROUP("Meta Hedge strategy: common params");
 INPUT2 float Meta_Hedge_LotSize = 0;                // Lot size
-INPUT2 int Meta_Hedge_SignalOpenMethod = 3;         // Signal open method
+INPUT2 int Meta_Hedge_SignalOpenMethod = 0;         // Signal open method
 INPUT2 float Meta_Hedge_SignalOpenLevel = 0;        // Signal open level
 INPUT2 int Meta_Hedge_SignalOpenFilterMethod = 32;  // Signal open filter method
 INPUT2 int Meta_Hedge_SignalOpenFilterTime = 3;     // Signal open filter time (0-31)
@@ -307,29 +307,6 @@ class Stg_Meta_Hedge : public Strategy {
   }
 
   /**
-   * Gets hedge ratio value.
-   *
-   * @returns
-   *   Returns hedge ratio between -1.0 and 1.0.
-   */
-  float GetHedgeRatio(int _shift = 0) {
-    double _res_ratio = 0.0f;
-    Chart *_chart = trade.GetChart();
-    ChartEntry _ohlc_d1_0 = _chart.GetEntry(PERIOD_D1, _shift, _chart.GetSymbol());
-    ChartEntry _ohlc_d1_1 = _chart.GetEntry(PERIOD_D1, _shift + 1, _chart.GetSymbol());
-    double _high0 = _chart.GetHigh(PERIOD_D1, _shift);
-    double _high1 = _chart.GetHigh(PERIOD_D1, _shift + 1);
-    double _low0 = _chart.GetLow(PERIOD_D1, _shift);
-    double _low1 = _chart.GetLow(PERIOD_D1, _shift + 1);
-    double _high = fmax(_high0, _high1);
-    double _low = fmin(_low0, _low1);
-    double _open = _chart.GetOpen(_shift);
-    double _range = (_high - _low);
-    _res_ratio = 2.0 * (_open - _low) / _range - 1.0;
-    return (float)_res_ratio;
-  }
-
-  /**
    * Loads active orders by magic number.
    */
   bool OrdersLoadByMagic() {
@@ -415,20 +392,19 @@ class Stg_Meta_Hedge : public Strategy {
     _result &= strat.Ptr().SignalOpen(_cmd, _method, _level, _shift);
     if (_result) {
       float _lots_ratio = GetLotsRatio(_shift);
-      float _hedge_ratio = GetHedgeRatio(_shift);
       switch (_cmd) {
         case ORDER_TYPE_BUY:
-          _result &= _lots_ratio != 1.0;
+          _result &= _lots_ratio <= 0;
           if (_result && _method != 0) {
-            if (METHOD(_method, 0)) _result &= _hedge_ratio < 0;
-            if (METHOD(_method, 1)) _result &= _hedge_ratio <= _lots_ratio;
+            // if (METHOD(_method, 0)) _result &= _lots_ratio < ?;
+            // if (METHOD(_method, 1)) _result &= _lots_ratio ...; // @todo
           }
           break;
         case ORDER_TYPE_SELL:
-          _result &= _lots_ratio != -1.0;
+          _result &= _lots_ratio >= 0;
           if (_result && _method != 0) {
-            if (METHOD(_method, 0)) _result &= _hedge_ratio > 0;
-            if (METHOD(_method, 1)) _result &= _hedge_ratio >= _lots_ratio;
+            // if (METHOD(_method, 0)) _result &= _lots_ratio > ?;
+            // if (METHOD(_method, 1)) _result &= _lots_ratio ...; // @todo
           }
           break;
       }
