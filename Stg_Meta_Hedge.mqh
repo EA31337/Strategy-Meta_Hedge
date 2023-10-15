@@ -9,7 +9,7 @@
 
 // User input params.
 INPUT2_GROUP("Meta Hedge strategy: main params");
-INPUT2 ENUM_STRATEGY Meta_Hedge_Strategy = STRAT_OSCILLATOR_CROSS;  // Strategy
+INPUT2 ENUM_STRATEGY Meta_Hedge_Strategy = STRAT_RSI;  // Strategy
 INPUT2_GROUP("Meta Hedge strategy: common params");
 INPUT2 float Meta_Hedge_LotSize = 0;                // Lot size
 INPUT2 int Meta_Hedge_SignalOpenMethod = 0;         // Signal open method
