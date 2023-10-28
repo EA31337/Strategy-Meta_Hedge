@@ -10,24 +10,24 @@
 // User input params.
 INPUT2_GROUP("Meta Hedge strategy: main params");
 INPUT2 ENUM_STRATEGY Meta_Hedge_Strategy = STRAT_RSI;  // Strategy
-INPUT2_GROUP("Meta Hedge strategy: common params");
-INPUT2 float Meta_Hedge_LotSize = 0;                // Lot size
-INPUT2 int Meta_Hedge_SignalOpenMethod = 0;         // Signal open method
-INPUT2 float Meta_Hedge_SignalOpenLevel = 0;        // Signal open level
-INPUT2 int Meta_Hedge_SignalOpenFilterMethod = 32;  // Signal open filter method
-INPUT2 int Meta_Hedge_SignalOpenFilterTime = 3;     // Signal open filter time (0-31)
-INPUT2 int Meta_Hedge_SignalOpenBoostMethod = 0;    // Signal open boost method
-INPUT2 int Meta_Hedge_SignalCloseMethod = 0;        // Signal close method
-INPUT2 int Meta_Hedge_SignalCloseFilter = 32;       // Signal close filter (-127-127)
-INPUT2 float Meta_Hedge_SignalCloseLevel = 0;       // Signal close level
-INPUT2 int Meta_Hedge_PriceStopMethod = 0;          // Price limit method
-INPUT2 float Meta_Hedge_PriceStopLevel = 2;         // Price limit level
-INPUT2 int Meta_Hedge_TickFilterMethod = 32;        // Tick filter method (0-255)
-INPUT2 float Meta_Hedge_MaxSpread = 4.0;            // Max spread to trade (in pips)
-INPUT2 short Meta_Hedge_Shift = 0;                  // Shift
-INPUT2 float Meta_Hedge_OrderCloseLoss = 200;       // Order close loss
-INPUT2 float Meta_Hedge_OrderCloseProfit = 200;     // Order close profit
-INPUT2 int Meta_Hedge_OrderCloseTime = 2880;        // Order close time in mins (>0) or bars (<0)
+INPUT3_GROUP("Meta Hedge strategy: common params");
+INPUT3 float Meta_Hedge_LotSize = 0;                // Lot size
+INPUT3 int Meta_Hedge_SignalOpenMethod = 0;         // Signal open method
+INPUT3 float Meta_Hedge_SignalOpenLevel = 0;        // Signal open level
+INPUT3 int Meta_Hedge_SignalOpenFilterMethod = 32;  // Signal open filter method
+INPUT3 int Meta_Hedge_SignalOpenFilterTime = 3;     // Signal open filter time (0-31)
+INPUT3 int Meta_Hedge_SignalOpenBoostMethod = 0;    // Signal open boost method
+INPUT3 int Meta_Hedge_SignalCloseMethod = 0;        // Signal close method
+INPUT3 int Meta_Hedge_SignalCloseFilter = 32;       // Signal close filter (-127-127)
+INPUT3 float Meta_Hedge_SignalCloseLevel = 0;       // Signal close level
+INPUT3 int Meta_Hedge_PriceStopMethod = 0;          // Price limit method
+INPUT3 float Meta_Hedge_PriceStopLevel = 2;         // Price limit level
+INPUT3 int Meta_Hedge_TickFilterMethod = 32;        // Tick filter method (0-255)
+INPUT3 float Meta_Hedge_MaxSpread = 4.0;            // Max spread to trade (in pips)
+INPUT3 short Meta_Hedge_Shift = 0;                  // Shift
+INPUT3 float Meta_Hedge_OrderCloseLoss = 200;       // Order close loss
+INPUT3 float Meta_Hedge_OrderCloseProfit = 200;     // Order close profit
+INPUT3 int Meta_Hedge_OrderCloseTime = 2880;        // Order close time in mins (>0) or bars (<0)
 
 // Structs.
 // Defines struct with default user strategy values.
